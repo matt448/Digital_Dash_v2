@@ -1,0 +1,2 @@
+#!/bin/bash
+arduino_serial_read.py &
