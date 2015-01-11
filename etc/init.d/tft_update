@@ -1,0 +1,2 @@
+#!/bin/bash
+cd home/ubuntu/Digital_Dash_v2 && /home/ubuntu/Digital_Dash_v2/tft_update.py &

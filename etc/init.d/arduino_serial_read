@@ -1,2 +1,2 @@
 #!/bin/bash
-arduino_serial_read.py &
+/home/ubuntu/Digital_Dash_v2/arduino_serial_read.py &

@@ -80,6 +80,6 @@ while True:
     disp.clear()
     #Calculate the difference between the two times.
     #This tells us how long it took to draw the TFT screen. 
-    print 'DIFF: ' + str(end_time - start_time)
+    ####print 'DIFF: ' + str(end_time - start_time)
 
 
