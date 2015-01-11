@@ -23,3 +23,7 @@ cd /etc/rc4.d && ln -s ../init.d/tft_update S99tft_update
 
 cd /etc/rc5.d && ln -s ../init.d/arduino_serial_read S90arduino_serial_read
 cd /etc/rc5.d && ln -s ../init.d/tft_update S99tft_update
+
+cd /etc/rc0.d && ln -s ../init.d/tft_update K10tft_update
+cd /etc/rc1.d && ln -s ../init.d/tft_update K10tft_update
+cd /etc/rc6.d && ln -s ../init.d/tft_update K10tft_update

@@ -39,7 +39,7 @@ disp.clear()
 # Get a PIL Draw object to start drawing on the display buffer.
 draw = disp.draw()
 
-# Now that the display has been blanked out turn on the backlight
+# Start PWM pin for  backlight
 PWM.start("P9_14", 0)
 
 ############################
@@ -49,7 +49,7 @@ PWM.start("P9_14", 0)
 
 #Signal handler for controlled process shutdown
 def signal_term_handler(signal, frame):
-    print 'got SIGTERM'
+    #print 'got SIGTERM'
     #Reduce the duty cycle of the backlight PWM pin in steps to fade out
     duty_cycle = 100
     while duty_cycle > 0:
@@ -85,9 +85,10 @@ def draw_rotated_text(image, text, position, angle, font, fill=(255,0,0)):
 ## Main Loop
 ##
 
-#Loop forever reading the analog pin and displaying the value on the screen
+#Loop forever reading data from Redis and displaying the value on the screen
 duty_cycle = 0
 while True:
+    #Fade in backlight until it reaches 100%
     if duty_cycle < 100:
         duty_cycle += 10
         PWM.set_duty_cycle("P9_14", duty_cycle)
@@ -96,10 +97,10 @@ while True:
     #Grab the speed from redis
     speed = r.get('speed')
     #Draw the speed value with a custom font
-    font = ImageFont.truetype('fonts/ArialBold.ttf', 140)
+    font = ImageFont.truetype('/home/ubuntu/Digital_Dash_v2/fonts/ArialBold.ttf', 140)
     draw_rotated_text(disp.buffer, str(speed), (40, 100), 90, font, fill=(255,255,255))
     #Draw mph text with a smaller font
-    font = ImageFont.truetype('fonts/ArialBold.ttf', 40)
+    font = ImageFont.truetype('/home/ubuntu/Digital_Dash_v2/fonts/ArialBold.ttf', 40)
     draw_rotated_text(disp.buffer, str('mph'), (90, 10), 90, font, fill=(255,255,255))
     #Take time stamp before we start drawing on the TFT screen
     ###start_time = time.time()
