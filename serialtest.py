@@ -13,10 +13,6 @@ else:
     UART.setup("UART1") #This creates the serial device
     ser = serial.Serial('/dev/ttyO1', 115200, timeout=2)
 
-
-#Start serial connection with Arduino on UART1
-ser = serial.Serial('/dev/ttyO1', 115200, timeout=2)
-
 while True:
     line = ser.readline()
     print(line)
