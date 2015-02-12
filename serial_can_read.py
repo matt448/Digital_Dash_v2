@@ -2,15 +2,20 @@
 
 import serial
 import redis
+import os.path
+import Adafruit_BBIO.UART as UART
 from time import sleep
 
 #Setup connection redis
 r = redis.StrictRedis(host='localhost', port=6379, db=0)
 
-#Start serial connection with Arduino
-ser = serial.Serial('/dev/ttyACM0', 115200, timeout=2)
-ser.setRTS(True)
-ser.setRTS(False)
+#Start serial connection with Arduino UART
+if os.path.exists('/dev/ttyO1'):
+    ser = serial.Serial('/dev/ttyO1', 115200, timeout=2)
+else:
+    UART.setup("UART1") #This creates the serial device
+    ser = serial.Serial('/dev/ttyO1', 115200, timeout=2)
+
 
 while True:
     line = ser.readline()
